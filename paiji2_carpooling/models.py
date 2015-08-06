@@ -9,12 +9,16 @@ from django.utils.translation import (
 )
 
 
+def default_good_until(self):
+    return timezone.now() + timedelta(days=3)
+
+
 class Covoiturage(models.Model):
     OFFER = 0
     SEARCH = 1
     ANNONCE_TYPE = (
-        (OFFER, pgettext('1st p sg','Offer')),
-        (SEARCH, pgettext('1st p sg','Search')),
+        (OFFER, pgettext('1st p sg', 'Offer')),
+        (SEARCH, pgettext('1st p sg', 'Search')),
     )
 
     author = models.ForeignKey(
@@ -31,7 +35,7 @@ class Covoiturage(models.Model):
 
     good_until = models.DateTimeField(
         _('advert validity deadline'),
-        default = timezone.now()+timedelta(days=3),
+        default=default_good_until,
     )
 
     posted_at = models.DateTimeField(
@@ -44,9 +48,14 @@ class Covoiturage(models.Model):
     )
 
     def __unicode__(self):
+        if self.ANNONCE_TYPE is self.OFFER:
+            action = _('offers')
+        else:
+            action = _('searches')
+
         return "{author} {action} {notes}".format(
             author=self.author.get_full_name(),
-            action=_('offers') if self.ANNONCE_TYPE is self.OFFER else _('searches'),
+            action=action,
             notes=self.notes,
         )
 
