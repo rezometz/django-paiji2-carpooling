@@ -9,11 +9,11 @@ from django.utils.translation import (
 )
 
 
-def default_good_until(self):
+def default_good_until():
     return timezone.now() + timedelta(days=3)
 
 
-class Covoiturage(models.Model):
+class Carpool(models.Model):
     OFFER = 0
     SEARCH = 1
     ANNONCE_TYPE = (
@@ -66,7 +66,7 @@ class Covoiturage(models.Model):
     def save(self, *args, **kwargs):
         if self.pk is None:
             self.posted_at = timezone.now()
-        super(Covoiturage, self).save(*args, **kwargs)
+        super(Carpool, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = _('carpool')

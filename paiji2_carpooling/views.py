@@ -5,7 +5,7 @@ from django.utils.translation import ugettext as _
 from django.contrib import messages
 
 from paiji2_carpooling.models import (
-    Covoiturage as Carpool,
+    Carpool,
 )
 
 
@@ -71,7 +71,7 @@ class CarpoolEditView(generic.UpdateView):
         )
 
     def get_success_url(self):
-        messages.success(self.request, message_update)
+        messages.success(self.request, self.message_update)
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')
 
@@ -94,6 +94,6 @@ class CarpoolDeleteView(generic.DeleteView):
         )
 
     def get_success_url(self):
-        messages.success(self.request, message_delete)
+        messages.success(self.request, self.message_delete)
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')

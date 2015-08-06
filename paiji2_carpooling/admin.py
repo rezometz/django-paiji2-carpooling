@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from paiji2_carpooling.models import (
-    Covoiturage as Carpool,
+    Carpool,
 )
 
 
