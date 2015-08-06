@@ -13,21 +13,21 @@ urlpatterns = [
     url(
         r'^$',
         login_required(CarpoolListView.as_view()),
-        name="cov-list",
+        name="carpool-list",
     ),
     url(
         r'add$',
         login_required(CarpoolCreateView.as_view()),
-        name="cov-add",
+        name="carpool-create",
     ),
     url(
         r'edit/(?P<pk>[0-9]+)/$',
         login_required(CarpoolEditView.as_view()),
-        name="cov-edit",
+        name="carpool-edit",
     ),
     url(
         r'delete/(?P<pk>[0-9]+)/$',
         login_required(CarpoolDeleteView.as_view()),
-        name="cov-delete",
+        name="carpool-delete",
     ),
 ]
