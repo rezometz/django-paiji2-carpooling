@@ -2,11 +2,17 @@ from datetime import timedelta
 
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth import get_user_model
 from django.utils.translation import (
     ugettext as _,
     pgettext,
 )
+
+
+try:
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+except:
+    from django.contrib.auth.models import User
 
 
 def default_good_until():
@@ -22,7 +28,7 @@ class Carpool(models.Model):
     )
 
     author = models.ForeignKey(
-        get_user_model(),
+        User,
         verbose_name=_('author'),
         related_name='covs',
     )
