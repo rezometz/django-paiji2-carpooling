@@ -9,9 +9,14 @@ install:
   - pip install -q Django==$DJANGO --use-mirrors
   - pip install pep8 --use-mirrors
   - pip install https://github.com/dcramer/pyflakes/tarball/master
+  - pip install coveralls
   - pip install -q -e . --use-mirrors
 before_script:
   - "pep8 --exclude=migrations paiji2_carpooling"
   - pyflakes -x W paiji2_carpooling
 script:
+  - coverage run --source=paiji2_carpooling manage.py test
   - python setup.py test
+
+after_success:
+  - coveralls
