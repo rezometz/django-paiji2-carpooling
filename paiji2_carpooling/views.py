@@ -20,11 +20,6 @@ class CarpoolListView(generic.ListView):
             'author'
         )
 
-    def get_object(self):
-        ob = super(CarpoolListView, self).get_object()
-        ob.label = labels.get(ob.get_annonce_type_display())
-        return ob
-
 
 class CarpoolCreateView(generic.CreateView):
     model = Carpool

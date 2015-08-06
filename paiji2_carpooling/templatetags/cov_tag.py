@@ -11,7 +11,7 @@ register = template.Library()
 
 @register.inclusion_tag('carpooling/carpool/block.html', takes_context=True)
 def get_cov(context):
-    context['cov'] = Covoiturage.objects.select_related('author').filter(
+    context['cov'] = Carpool.objects.select_related('author').filter(
         good_until__gte=timezone.now()
     ).order_by('good_until')
 
