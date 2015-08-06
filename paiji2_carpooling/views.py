@@ -22,7 +22,6 @@ class CarpoolOwnerMixin(object):
         )
 
 
-
 class CarpoolListView(generic.ListView):
     model = Carpool
     paginate_by = 10
