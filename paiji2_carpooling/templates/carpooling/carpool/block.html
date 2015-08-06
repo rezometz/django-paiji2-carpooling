@@ -5,13 +5,13 @@
 <div class="row text-center">
     {% if request.user.is_authenticated %}
         <div class="col-sm-6">
-            <a class="btn btn-sm btn-default" href="{% url 'cov-add' %}">
+            <a class="btn btn-sm btn-default" href="{% url 'carpool-create' %}">
                 {% trans 'Add a carpool' %}
             </a>
         </div>
     {% endif %}
     <div class="col-sm-6">
-        <a class="btn btn-sm btn-default" href="{% url 'cov-list' %}">
+        <a class="btn btn-sm btn-default" href="{% url 'carpool-list' %}">
             {# Translators: Archives #}
             {% trans 'Records' %}
         </a>
@@ -23,8 +23,8 @@
         <li>
         {% if item.author == request.user %}
             <div class="pull-right">
-                <a href="{% url 'cov-edit' item.id %}"><i class="fa fa-pencil"></i></a>
-                <a href="{% url 'cov-delete' item.id %}"><i class="fa fa-trash-o"></i></a>
+                <a href="{% url 'carpool-edit' item.id %}"><i class="fa fa-pencil"></i></a>
+                <a href="{% url 'carpool-delete' item.id %}"><i class="fa fa-trash-o"></i></a>
             </div>
         {% endif %}
 
