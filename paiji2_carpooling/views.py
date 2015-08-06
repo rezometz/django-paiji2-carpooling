@@ -9,6 +9,20 @@ from paiji2_carpooling.models import (
 )
 
 
+class CarpoolOwnerMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        """ Making sure that only authors can update Carpools """
+        obj = self.get_object()
+        if obj.author != self.request.user:
+            return HttpResponseNotFound(
+                _('Rezo is not hacked. You don\'t have the permission xD')
+            )
+        return super(CarpoolOwnerMixin, self).dispatch(
+            request, *args, **kwargs
+        )
+
+
+
 class CarpoolListView(generic.ListView):
     model = Carpool
     paginate_by = 10
@@ -43,8 +57,7 @@ class CarpoolCreateView(generic.CreateView):
         return success_url if success_url != '' else reverse('index')
 
 
-# TODO factorize user authorization
-class CarpoolEditView(generic.UpdateView):
+class CarpoolEditView(CarpoolOwnerMixin, generic.UpdateView):
     model = Carpool
     template_name = 'carpooling/carpool/form.html'
     fields = (
@@ -56,40 +69,18 @@ class CarpoolEditView(generic.UpdateView):
         'Your carpool has been updated, it will be refreshed in a moment'
     )
 
-    def dispatch(self, request, *args, **kwargs):
-        """ Making sure that only authors can update Covs """
-        obj = self.get_object()
-        if obj.author != self.request.user:
-            return HttpResponseNotFound(
-                _('Rezo is not hacked. You don\'t have the permission xD')
-            )
-        return super(CarpoolEditView, self).dispatch(
-            request, *args, **kwargs
-        )
-
     def get_success_url(self):
         messages.success(self.request, self.message_update)
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')
 
 
-class CarpoolDeleteView(generic.DeleteView):
+class CarpoolDeleteView(CarpoolOwnerMixin, generic.DeleteView):
     model = Carpool
     template_name = 'carpooling/carpool/confirm_delete.html'
     message_delete = _(
         'Your carpool has been removed, it will be refreshed in a moment'
     )
-
-    def dispatch(self, request, *args, **kwargs):
-        """ Making sure that only authors can update Covs """
-        obj = self.get_object()
-        if obj.author != self.request.user:
-            return HttpResponseNotFound(
-                _('Rezo is not hacked. You don\'t have the permission xD')
-            )
-        return super(CarpoolDeleteView, self).dispatch(
-            request, *args, **kwargs
-        )
 
     def get_success_url(self):
         messages.success(self.request, self.message_delete)
