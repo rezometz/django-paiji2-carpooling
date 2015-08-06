@@ -3,7 +3,7 @@ from django.conf.urls import url, include
 from modular_blocks import ModuleApp, TemplateTagBlock, modules
 
 
-class CovModule(ModuleApp):
+class CarpoolingModule(ModuleApp):
     app_name = 'cov'
     name = 'cov'
     urls = url(r'^cov/', include('cov.urls'))
@@ -15,4 +15,6 @@ class CovModule(ModuleApp):
             cache_time=60
         ),
     ]
-modules.register(CovModule)
+
+
+modules.register(CarpoolingModule)

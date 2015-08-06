@@ -13,7 +13,7 @@ class CarpoolListView(generic.ListView):
     model = Carpool
     paginate_by = 10
     context_object_name = 'covs'
-    template_name = 'cov/cov_list.html'
+    template_name = 'carpooling/carpool/list.html'
 
     def get_queryset(self):
         return super(CarpoolListView, self).get_queryset().select_related(
@@ -28,6 +28,7 @@ class CarpoolListView(generic.ListView):
 
 class CarpoolCreateView(generic.CreateView):
     model = Carpool
+    template_name = 'carpooling/carpool/form.html'
     fields = (
         'annonce_type',
         'good_until',
@@ -50,6 +51,7 @@ class CarpoolCreateView(generic.CreateView):
 # TODO factorize user authorization
 class CarpoolEditView(generic.UpdateView):
     model = Carpool
+    template_name = 'carpooling/carpool/form.html'
     fields = (
         'annonce_type',
         'good_until',
@@ -78,6 +80,7 @@ class CarpoolEditView(generic.UpdateView):
 
 class CarpoolDeleteView(generic.DeleteView):
     model = Carpool
+    template_name = 'carpooling/carpool/confirm_delete.html'
     message_delete = _(
         'Your carpool has been removed, it will be refreshed in a moment'
     )
