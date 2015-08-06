@@ -1,29 +1,26 @@
-# -*- coding: UTF-8 -*-
+from datetime import timedelta
 
 from django.db import models
-# from django.core.validators import *
 from django.utils import timezone
-from datetime import timedelta
 from django.contrib.auth import get_user_model
-from django.utils.translation import ugettext as _
-from django.utils.translation import pgettext
+from django.utils.translation import (
+    ugettext as _,
+    pgettext,
+)
+
 
 class Covoiturage(models.Model):
-
-    class Meta:
-        verbose_name = _('carpool')
-        verbose_name_plural = _('carpools')
-        ordering = ('-posted_at', )
+    OFFER = 0
+    SEARCH = 1
+    ANNONCE_TYPE = (
+        (OFFER, pgettext('1st p sg','Offer')),
+        (SEARCH, pgettext('1st p sg','Search')),
+    )
 
     author = models.ForeignKey(
         get_user_model(),
         verbose_name=_('author'),
         related_name='covs',
-    )
-
-    ANNONCE_TYPE = (
-        (0, pgettext('1st p sg','Offer')),
-        (1, pgettext('1st p sg','Search')),
     )
 
     annonce_type = models.IntegerField(
@@ -47,10 +44,11 @@ class Covoiturage(models.Model):
     )
 
     def __unicode__(self):
-        rep = self.author.first_name + self.author.last_name
-        rep += ' '+_('offer')+' ' if self.ANNONCE_TYPE == 0 else ' '+_('search')+' '
-        rep += self.notes
-        return rep
+        return "{author} {action} {notes}".format(
+            author=self.author.get_full_name(),
+            action=_('offers') if self.ANNONCE_TYPE is self.OFFER else _('searches'),
+            notes=self.notes,
+        )
 
     def isGood(self):
         return self.good_until > timezone.now()
@@ -61,3 +59,7 @@ class Covoiturage(models.Model):
             self.posted_at = timezone.now()
         super(Covoiturage, self).save(*args, **kwargs)
 
+    class Meta:
+        verbose_name = _('carpool')
+        verbose_name_plural = _('carpools')
+        ordering = ('-posted_at', )

@@ -1,9 +1,18 @@
 from django.contrib import admin
 
-# Register your models here.
-from cov.models import Covoiturage
+from paiji2_carpooling.models import (
+    Covoiturage as Carpool,
+)
 
-class CovoiturageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'author', 'annonce_type', 'good_until', 'notes', 'posted_at')
 
-admin.site.register(Covoiturage, CovoiturageAdmin)
+class CarpoolAdmin(admin.ModelAdmin):
+    list_display = (
+        'author',
+        'annonce_type',
+        'good_until',
+        'notes',
+        'posted_at',
+    )
+
+
+admin.site.register(Carpool, CarpoolAdmin)
