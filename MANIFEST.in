@@ -1,0 +1,5 @@
+include README.markdown
+include LICENSE
+recursive-include paiji2_carpooling/static *
+recursive-include paiji2_carpooling/templates *
+recursive-include paiji2_carpooling/locale *
