@@ -19,7 +19,6 @@ User = get_user_model()
 
 
 class BaseTestCase(TestCase):
-
     def setUp(self):
         self.alice = User.objects.create_user(
             'alice',
@@ -37,7 +36,6 @@ class BaseTestCase(TestCase):
         self.client = Client(enforce_csrf_checkts=True)
 
 
-
 class PagesTestCase(BaseTestCase):
     def test_list(self):
         # Non unauthenticated user
@@ -48,7 +46,6 @@ class PagesTestCase(BaseTestCase):
         self.client.login(username='alice', password='test')
         response = self.client.get(reverse('carpool-list'))
         self.assertEqual(response.status_code, 200)
-
 
     def test_create(self):
         # Non authenticated user
