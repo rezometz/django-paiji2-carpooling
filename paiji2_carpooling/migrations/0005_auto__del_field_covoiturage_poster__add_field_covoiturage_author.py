@@ -8,27 +8,27 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Deleting field 'Covoiturage.poster'
-        db.delete_column(u'cov_covoiturage', 'poster_id')
+        # Deleting field 'Carpool.poster'
+        db.delete_column(u'paiji2_carpooling_carpool', 'poster_id')
 
-        # Adding field 'Covoiturage.author'
-        db.add_column(u'cov_covoiturage', 'author',
-                      self.gf('django.db.models.fields.related.ForeignKey')(default=1, related_name='covs', to=orm['rezo.User']),
+        # Adding field 'Carpool.author'
+        db.add_column(u'paiji2_carpooling_carpool', 'author',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=1, related_name='paiji2_carpoolings', to=orm['rezo.User']),
                       keep_default=False)
 
 
     def backwards(self, orm):
 
-        # User chose to not deal with backwards NULL issues for 'Covoiturage.poster'
-        raise RuntimeError("Cannot reverse this migration. 'Covoiturage.poster' and its values cannot be restored.")
-        
-        # The following code is provided here to aid in writing a correct migration        # Adding field 'Covoiturage.poster'
-        db.add_column(u'cov_covoiturage', 'poster',
-                      self.gf('django.db.models.fields.related.ForeignKey')(related_name='covs', to=orm['rezo.User']),
+        # User chose to not deal with backwards NULL issues for 'Carpool.poster'
+        raise RuntimeError("Cannot reverse this migration. 'Carpool.poster' and its values cannot be restored.")
+
+        # The following code is provided here to aid in writing a correct migration        # Adding field 'Carpool.poster'
+        db.add_column(u'paiji2_carpooling_carpool', 'poster',
+                      self.gf('django.db.models.fields.related.ForeignKey')(related_name='paiji2_carpoolings', to=orm['rezo.User']),
                       keep_default=False)
 
-        # Deleting field 'Covoiturage.author'
-        db.delete_column(u'cov_covoiturage', 'author_id')
+        # Deleting field 'Carpool.author'
+        db.delete_column(u'paiji2_carpooling_carpool', 'author_id')
 
 
     models = {
@@ -52,10 +52,10 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'cov.covoiturage': {
-            'Meta': {'ordering': "('-posted_at',)", 'object_name': 'Covoiturage'},
+        u'paiji2_carpooling.carpool': {
+            'Meta': {'ordering': "('-posted_at',)", 'object_name': 'Carpool'},
             'annonce_type': ('django.db.models.fields.IntegerField', [], {}),
-            'author': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'covs'", 'to': u"orm['rezo.User']"}),
+            'author': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'paiji2_carpoolings'", 'to': u"orm['rezo.User']"}),
             'good_until': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2014, 6, 25, 0, 0)'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'notes': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
@@ -82,4 +82,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['cov']
+    complete_apps = ['paiji2_carpooling']

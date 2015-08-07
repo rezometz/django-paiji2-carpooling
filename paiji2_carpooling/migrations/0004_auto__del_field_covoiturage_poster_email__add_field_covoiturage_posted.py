@@ -8,44 +8,44 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Deleting field 'Covoiturage.poster_email'
-        db.delete_column(u'cov_covoiturage', 'poster_email')
+        # Deleting field 'Carpool.poster_email'
+        db.delete_column(u'paiji2_carpooling_carpool', 'poster_email')
 
-        # Adding field 'Covoiturage.posted_at'
-        db.add_column(u'cov_covoiturage', 'posted_at',
+        # Adding field 'Carpool.posted_at'
+        db.add_column(u'paiji2_carpooling_carpool', 'posted_at',
                       self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2014, 4, 13, 0, 0)),
                       keep_default=False)
 
 
-        # Renaming column for 'Covoiturage.poster' to match new field type.
-        db.rename_column(u'cov_covoiturage', 'poster', 'poster_id')
-        # Changing field 'Covoiturage.poster'
-        db.alter_column(u'cov_covoiturage', 'poster_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['rezo.User']))
-        # Adding index on 'Covoiturage', fields ['poster']
-        db.create_index(u'cov_covoiturage', ['poster_id'])
+        # Renaming column for 'Carpool.poster' to match new field type.
+        db.rename_column(u'paiji2_carpooling_carpool', 'poster', 'poster_id')
+        # Changing field 'Carpool.poster'
+        db.alter_column(u'paiji2_carpooling_carpool', 'poster_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['rezo.User']))
+        # Adding index on 'Carpool', fields ['poster']
+        db.create_index(u'paiji2_carpooling_carpool', ['poster_id'])
 
 
     def backwards(self, orm):
-        # Removing index on 'Covoiturage', fields ['poster']
-        db.delete_index(u'cov_covoiturage', ['poster_id'])
+        # Removing index on 'Carpool', fields ['poster']
+        db.delete_index(u'paiji2_carpooling_carpool', ['poster_id'])
 
 
-        # User chose to not deal with backwards NULL issues for 'Covoiturage.poster_email'
-        raise RuntimeError("Cannot reverse this migration. 'Covoiturage.poster_email' and its values cannot be restored.")
-        
-        # The following code is provided here to aid in writing a correct migration        # Adding field 'Covoiturage.poster_email'
-        db.add_column(u'cov_covoiturage', 'poster_email',
+        # User chose to not deal with backwards NULL issues for 'Carpool.poster_email'
+        raise RuntimeError("Cannot reverse this migration. 'Carpool.poster_email' and its values cannot be restored.")
+
+        # The following code is provided here to aid in writing a correct migration        # Adding field 'Carpool.poster_email'
+        db.add_column(u'paiji2_carpooling_carpool', 'poster_email',
                       self.gf('django.db.models.fields.EmailField')(max_length=75),
                       keep_default=False)
 
-        # Deleting field 'Covoiturage.posted_at'
-        db.delete_column(u'cov_covoiturage', 'posted_at')
+        # Deleting field 'Carpool.posted_at'
+        db.delete_column(u'paiji2_carpooling_carpool', 'posted_at')
 
 
-        # Renaming column for 'Covoiturage.poster' to match new field type.
-        db.rename_column(u'cov_covoiturage', 'poster_id', 'poster')
-        # Changing field 'Covoiturage.poster'
-        db.alter_column(u'cov_covoiturage', 'poster', self.gf('django.db.models.fields.CharField')(max_length=50))
+        # Renaming column for 'Carpool.poster' to match new field type.
+        db.rename_column(u'paiji2_carpooling_carpool', 'poster_id', 'poster')
+        # Changing field 'Carpool.poster'
+        db.alter_column(u'paiji2_carpooling_carpool', 'poster', self.gf('django.db.models.fields.CharField')(max_length=50))
 
     models = {
         u'auth.group': {
@@ -68,14 +68,14 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'cov.covoiturage': {
-            'Meta': {'ordering': "('-posted_at',)", 'object_name': 'Covoiturage'},
+        u'paiji2_carpooling.carpool': {
+            'Meta': {'ordering': "('-posted_at',)", 'object_name': 'Carpool'},
             'annonce_type': ('django.db.models.fields.IntegerField', [], {}),
             'good_until': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2014, 4, 16, 0, 0)'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'notes': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
             'posted_at': ('django.db.models.fields.DateTimeField', [], {}),
-            'poster': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'covs'", 'to': u"orm['rezo.User']"})
+            'poster': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'paiji2_carpoolings'", 'to': u"orm['rezo.User']"})
         },
         u'rezo.user': {
             'Meta': {'object_name': 'User'},
@@ -96,4 +96,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['cov']
+    complete_apps = ['paiji2_carpooling']

@@ -8,20 +8,20 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'Covoiturage.price_per_trip'
-        db.add_column(u'cov_covoiturage', 'price_per_trip',
+        # Adding field 'Carpool.price_per_trip'
+        db.add_column(u'paiji2_carpooling_carpool', 'price_per_trip',
                       self.gf('django.db.models.fields.IntegerField')(null=True, blank=True),
                       keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting field 'Covoiturage.price_per_trip'
-        db.delete_column(u'cov_covoiturage', 'price_per_trip')
+        # Deleting field 'Carpool.price_per_trip'
+        db.delete_column(u'paiji2_carpooling_carpool', 'price_per_trip')
 
 
     models = {
-        u'cov.covoiturage': {
-            'Meta': {'object_name': 'Covoiturage'},
+        u'paiji2_carpooling.carpool': {
+            'Meta': {'object_name': 'Carpool'},
             'annonce_type': ('django.db.models.fields.IntegerField', [], {}),
             'dept_datetime': ('django.db.models.fields.DateTimeField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -35,4 +35,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['cov']
+    complete_apps = ['paiji2_carpooling']
