@@ -54,7 +54,7 @@ class Carpool(models.Model):
     )
 
     def __unicode__(self):
-        if self.ANNONCE_TYPE is self.OFFER:
+        if self.annonce_type is self.OFFER:
             action = _('offers')
         else:
             action = _('searches')

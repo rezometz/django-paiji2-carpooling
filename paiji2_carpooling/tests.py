@@ -13,6 +13,9 @@ from paiji2_carpooling.views import (
     CarpoolEditView,
     CarpoolDeleteView,
 )
+from paiji2_carpooling.templatetags.cov_tag import (
+    get_cov,
+)
 
 
 User = get_user_model()
@@ -83,6 +86,15 @@ class PagesTestCase(BaseTestCase):
 
         self.assertEqual(response.status_code, 200)
 
+        response = self.client.post(url, {
+            'annonce_type': Carpool.OFFER,
+            'good_until': default_good_until(),
+            'notes': 'test',
+        })
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Carpool.objects.count(), 1)
+
     def test_delete(self):
         url = reverse('carpool-delete', kwargs={
             'pk': self.carpool.pk,
@@ -98,3 +110,49 @@ class PagesTestCase(BaseTestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
+
+        response = self.client.post(url)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Carpool.objects.count(), 0)
+
+
+class TemplateTagsTestCase(BaseTestCase):
+    def test_get_cov(self):
+        context = {}
+        context = get_cov(context)
+
+        self.assertTrue(context.has_key('cov'))
+        self.assertEqual(len(context.get('cov')), 1)
+
+
+class ModelsTestCase(BaseTestCase):
+    def setUp(self):
+        super(ModelsTestCase, self).setUp()
+        self.carpool_offer = Carpool.objects.create(
+            author=self.alice,
+            annonce_type=Carpool.OFFER,
+            notes='test',
+        )
+        self.carpool_search = Carpool.objects.create(
+            author=self.alice,
+            annonce_type=Carpool.SEARCH,
+            notes='test',
+        )
+
+    def test_carpool_unicode(self):
+        carpool_search = unicode(self.carpool_search)
+
+        self.assertEquals(type(carpool_search), unicode)
+        self.assertTrue('searches' in carpool_search)
+
+        carpool_offer = unicode(self.carpool_offer)
+
+        self.assertEquals(type(carpool_offer), unicode)
+        self.assertTrue('offers' in carpool_offer)
+
+
+class ModularTestCase(BaseTestCase):
+    def test_carpooling_modular(self):
+        from modular_blocks import modules
+        modules.autodiscover()
