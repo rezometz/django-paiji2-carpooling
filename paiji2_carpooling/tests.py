@@ -122,7 +122,7 @@ class TemplateTagsTestCase(BaseTestCase):
         context = {}
         context = get_cov(context)
 
-        self.assertTrue(context.has_key('cov'))
+        self.assertTrue('cov' in context)
         self.assertEqual(len(context.get('cov')), 1)
 
 
