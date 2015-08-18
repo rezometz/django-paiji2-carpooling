@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-22 19:47+0200\n"
+"POT-Creation-Date: 2015-08-18 23:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,145 +18,144 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: models.py:14
-msgid "carpool"
-msgstr "covoiturage"
-
-#: models.py:15
-msgid "carpools"
-msgstr "covoiturages"
-
-#: models.py:20
-msgid "author"
-msgstr "auteur"
-
-#: models.py:25 templates/cov/cov_block.html:39 templates/cov/cov_list.html:31
-#: templates/cov/cov_list.html.py:53
+#: models.py:26 templates/carpooling/carpool/block.html:40
+#: templates/carpooling/carpool/list.html:30
+#: templates/carpooling/carpool/list.html:52
 msgctxt "1st p sg"
 msgid "Offer"
 msgstr "Propose"
 
-#: models.py:26 templates/cov/cov_block.html:43 templates/cov/cov_list.html:35
-#: templates/cov/cov_list.html.py:57
+#: models.py:27 templates/carpooling/carpool/block.html:44
+#: templates/carpooling/carpool/list.html:34
+#: templates/carpooling/carpool/list.html:56
 msgctxt "1st p sg"
 msgid "Search"
 msgstr "Recherche"
 
-#: models.py:30
+#: models.py:32
+msgid "author"
+msgstr "auteur"
+
+#: models.py:37
 msgid "advert type"
 msgstr "type d’annonce"
 
-#: models.py:36
+#: models.py:43
 msgid "advert validity deadline"
 msgstr "date limite de validité"
 
-#: models.py:41
+#: models.py:48
 msgid "publication date"
 msgstr "date de publication"
 
-#: models.py:45
+#: models.py:52
 msgid "description"
 msgstr "description"
 
-#: models.py:51
-msgid "offer"
+#: models.py:58
+#, fuzzy
+msgid "offers"
 msgstr "propose"
 
-#: models.py:51
-msgid "search"
+#: models.py:60
+#, fuzzy
+msgid "searches"
 msgstr "recherche"
 
-#: models.py:57
+#: models.py:70
 msgid "still current ?"
 msgstr "toujours valable ?"
 
-#: views.py:45
+#: models.py:78
+msgid "carpool"
+msgstr "covoiturage"
+
+#: models.py:79
+msgid "carpools"
+msgstr "covoiturages"
+
+#: views.py:18
+msgid "Rezo is not hacked. You don't have the permission xD"
+msgstr ""
+
+#: views.py:53
 msgid "Your request has been saved successfully :P"
 msgstr "Votre demande a bien été enregistrée :P"
 
-#: views.py:65
+#: views.py:68
 msgid "Your carpool has been updated, it will be refreshed in a moment"
 msgstr "Votre covoiturage a été mis à jour, ce sera bientôt pris en compte"
 
-#: views.py:82
+#: views.py:81
 msgid "Your carpool has been removed, it will be refreshed in a moment"
 msgstr "Votre covoiturage a été supprimé, ce sera bientôt pris en compte"
 
-#: templates/cov/cov_block.html:4 templates/cov/cov_block.html.py:32
-#: templates/cov/cov_list.html:47
+#: templates/carpooling/carpool/block.html:5
+#: templates/carpooling/carpool/block.html:33
+#: templates/carpooling/carpool/list.html:46
 msgid "Carpool"
 msgstr "Covoiturage"
 
-#: templates/cov/cov_block.html:9
+#: templates/carpooling/carpool/block.html:10
 msgid "Add a carpool"
 msgstr "Ajouter un cov"
 
 #. Translators: Archives
-#: templates/cov/cov_block.html:16
+#: templates/carpooling/carpool/block.html:17
 msgid "Records"
 msgstr "Archives"
 
-#: templates/cov/cov_block.html:32 templates/cov/cov_list.html:47
+#: templates/carpooling/carpool/block.html:33
+#: templates/carpooling/carpool/list.html:46
 msgid "About"
 msgstr "À propos de"
 
-#: templates/cov/cov_block.html:52 templates/cov/cov_list.html:43
-#: templates/cov/cov_list.html.py:65
+#: templates/carpooling/carpool/block.html:53
+#: templates/carpooling/carpool/list.html:42
+#: templates/carpooling/carpool/list.html:64
 #, python-format
 msgid "%(TimeSince)s ago"
 msgstr "il y a %(TimeSince)s"
 
-#: templates/cov/cov_list.html:7
-msgid "Carpools"
-msgstr "Covoiturages"
-
-#: templates/cov/cov_list.html:15
-msgid "Add a carpool offer/search"
-msgstr "Publier une offre/demande de cov"
-
-#: templates/cov/cov_list.html:18
-msgid "Last carpools list"
-msgstr "Liste des derniers covoiturages"
-
-#: templates/cov/covoiturage_confirm_delete.html:5
+#: templates/carpooling/carpool/confirm_delete.html:8
 msgid "Carpool deletion confirmation"
 msgstr "Confirmer la suppression d’un covoiturage"
 
-#: templates/cov/covoiturage_confirm_delete.html:9
+#: templates/carpooling/carpool/confirm_delete.html:13
 msgid "Do you really want to delete this carpool ?"
 msgstr "Voulez-vous vraiment supprimer ce covoiturage ?"
 
-#: templates/cov/covoiturage_confirm_delete.html:19
+#: templates/carpooling/carpool/confirm_delete.html:23
 msgid "Delete"
 msgstr "Supprimer"
 
-#: templates/cov/covoiturage_form.html:8
-#: templates/cov/covoiturage_form.html:17
+#: templates/carpooling/carpool/form.html:10
+#: templates/carpooling/carpool/form.html:20
 msgid "Edit a carpool"
 msgstr "Modifier le covoiturage"
 
-#: templates/cov/covoiturage_form.html:10
-#: templates/cov/covoiturage_form.html:19
+#: templates/carpooling/carpool/form.html:12
+#: templates/carpooling/carpool/form.html:22
 msgid "Offer/search a carpool"
 msgstr "Proposer/rechercher un covoiturage"
 
-#: templates/cov/covoiturage_form.html:25
+#: templates/carpooling/carpool/form.html:28
 msgid "Announcer"
 msgstr "Annonceur"
 
-#: templates/cov/covoiturage_form.html:30
+#: templates/carpooling/carpool/form.html:33
 msgid "Advert type"
 msgstr "Type d’annonce"
 
-#: templates/cov/covoiturage_form.html:33
+#: templates/carpooling/carpool/form.html:36
 msgid "Departure time"
 msgstr "Date de départ"
 
-#: templates/cov/covoiturage_form.html:36
+#: templates/carpooling/carpool/form.html:39
 msgid "Notes"
 msgstr "Notes"
 
-#: templates/cov/covoiturage_form.html:37
+#: templates/carpooling/carpool/form.html:40
 msgid ""
 "Ex: Metz-Paris-Compiègne, on Friday around 5pm, 3 places 15 €, back on "
 "Sunday at 6pm"
@@ -164,10 +163,22 @@ msgstr ""
 "Ex: Metz-Paris-Compiègne, Vendredi vers 17h, 3 places au PAPS à 15€, retour "
 "dimanche à 18h"
 
-#: templates/cov/covoiturage_form.html:46
+#: templates/carpooling/carpool/form.html:49
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: templates/cov/covoiturage_form.html:48
+#: templates/carpooling/carpool/form.html:51
 msgid "Publish"
 msgstr "Publier"
+
+#: templates/carpooling/carpool/list.html:7
+msgid "Carpools"
+msgstr "Covoiturages"
+
+#: templates/carpooling/carpool/list.html:14
+msgid "Add a carpool offer/search"
+msgstr "Publier une offre/demande de cov"
+
+#: templates/carpooling/carpool/list.html:17
+msgid "Last carpools list"
+msgstr "Liste des derniers covoiturages"
