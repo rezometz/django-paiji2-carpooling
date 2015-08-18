@@ -1,11 +1,18 @@
 import os
+import sys
 from setuptools import setup, find_packages
+from django.core.management.commands.compilemessages import compile_messages
 
 with open(os.path.join(os.path.dirname(__file__), 'README.markdown')) as readme:
     README = readme.read()
 
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
+
+curdir = os.getcwd()
+os.chdir('paiji2_carpooling')
+compile_messages(stdout=sys.stdout)
+os.chdir(curdir)
 
 setup(
     name='django-paiji2-carpooling',
