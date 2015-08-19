@@ -1,7 +1,6 @@
 import os
 import sys
 from setuptools import setup, find_packages
-from django.core.management.commands.compilemessages import compile_messages
 
 with open(os.path.join(os.path.dirname(__file__), 'README.markdown')) as readme:
     README = readme.read()
@@ -9,9 +8,20 @@ with open(os.path.join(os.path.dirname(__file__), 'README.markdown')) as readme:
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
+# compile django.po files (translations)
 curdir = os.getcwd()
 os.chdir('paiji2_carpooling')
-compile_messages(stdout=sys.stdout)
+try:
+    # Django ==  1.6 
+    from django.core.management.commands.compilemessages import compile_messages
+    compile_messages(stdout=sys.stdout)
+except:
+    # Django > 1.6 
+    from  django.conf import settings
+    settings.configure()
+    from django.core.management.commands.compilemessages import Command
+    cmd = Command()
+    cmd.run_from_argv(['django-admin.py', 'compilemessages'])
 os.chdir(curdir)
 
 setup(
