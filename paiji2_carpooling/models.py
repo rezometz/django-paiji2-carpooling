@@ -12,7 +12,8 @@ try:
     from django.contrib.auth import get_user_model
     User = get_user_model()
 except:
-    from django.contrib.auth.models import User
+    from django.conf import settings
+    User = settings.AUTH_USER_MODEL
 
 
 def default_good_until():
