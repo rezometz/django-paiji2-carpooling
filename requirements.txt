@@ -1,3 +1,0 @@
-Django>=1.6
-django-bootstrap3
-git+https://github.com/rezometz/django-modular-blocks
