@@ -11,6 +11,7 @@ install:
   - pip install pep8 -U
   - pip install pyflakes -U
   - pip install coveralls -U
+  - pip install -r requirements.py -U
   - pip install -e .
 before_script:
   - "pep8 --exclude=migrations paiji2_carpooling"
