@@ -6,13 +6,13 @@ from paiji2_carpooling.models import (
     Carpool,
     default_good_until,
 )
-from paiji2_carpooling.views import (
-    CarpoolOwnerMixin,
-    CarpoolListView,
-    CarpoolCreateView,
-    CarpoolEditView,
-    CarpoolDeleteView,
-)
+# from paiji2_carpooling.views import (
+#     CarpoolOwnerMixin,
+#     CarpoolListView,
+#     CarpoolCreateView,
+#     CarpoolEditView,
+#     CarpoolDeleteView,
+# )
 from paiji2_carpooling.templatetags.cov_tag import (
     get_cov,
 )
