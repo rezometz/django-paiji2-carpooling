@@ -36,5 +36,6 @@ setup(
     ],
     install_requires=[
         'django-bootstrap3>=6',
+        'django-modular-blocks',
     ]
 )
