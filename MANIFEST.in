@@ -1,5 +1,6 @@
 include README.markdown
 include LICENSE
+include COPYING
 recursive-include paiji2_carpooling/static *
 recursive-include paiji2_carpooling/templates *
 recursive-include paiji2_carpooling/locale *
