@@ -21,6 +21,7 @@ INSTALLED_APPS = (
 
     # We load dependencies
     'bootstrap3',
+    'paiji2_utils',
 
     # We test this one
     'paiji2_carpooling',
