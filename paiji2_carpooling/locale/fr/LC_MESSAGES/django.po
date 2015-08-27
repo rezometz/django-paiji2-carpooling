@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-18 23:38+0200\n"
+"POT-Creation-Date: 2015-08-27 18:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,101 +18,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: models.py:26 templates/carpooling/carpool/block.html:40
-#: templates/carpooling/carpool/list.html:30
-#: templates/carpooling/carpool/list.html:52
+#: models.py:27 templates/carpooling/carpool/block.html:44
+#: templates/carpooling/carpool/list.html:29
 msgctxt "1st p sg"
 msgid "Offer"
 msgstr "Propose"
 
-#: models.py:27 templates/carpooling/carpool/block.html:44
-#: templates/carpooling/carpool/list.html:34
-#: templates/carpooling/carpool/list.html:56
+#: models.py:28 templates/carpooling/carpool/block.html:48
+#: templates/carpooling/carpool/list.html:33
 msgctxt "1st p sg"
 msgid "Search"
 msgstr "Recherche"
 
-#: models.py:32
+#: models.py:33
 msgid "author"
 msgstr "auteur"
 
-#: models.py:37
+#: models.py:38
 msgid "advert type"
 msgstr "type d’annonce"
 
-#: models.py:43
+#: models.py:44
 msgid "advert validity deadline"
 msgstr "date limite de validité"
 
-#: models.py:48
+#: models.py:49
 msgid "publication date"
 msgstr "date de publication"
 
-#: models.py:52
+#: models.py:53
 msgid "description"
 msgstr "description"
 
-#: models.py:58
-#, fuzzy
+#: models.py:59
 msgid "offers"
 msgstr "propose"
 
-#: models.py:60
-#, fuzzy
+#: models.py:61
 msgid "searches"
 msgstr "recherche"
 
-#: models.py:70
+#: models.py:71
 msgid "still current ?"
 msgstr "toujours valable ?"
 
-#: models.py:78
+#: models.py:79
 msgid "carpool"
 msgstr "covoiturage"
 
-#: models.py:79
+#: models.py:80
 msgid "carpools"
 msgstr "covoiturages"
 
-#: views.py:18
-msgid "Rezo is not hacked. You don't have the permission xD"
-msgstr ""
-
-#: views.py:53
-msgid "Your request has been saved successfully :P"
-msgstr "Votre demande a bien été enregistrée :P"
-
-#: views.py:68
-msgid "Your carpool has been updated, it will be refreshed in a moment"
-msgstr "Votre covoiturage a été mis à jour, ce sera bientôt pris en compte"
-
-#: views.py:81
-msgid "Your carpool has been removed, it will be refreshed in a moment"
-msgstr "Votre covoiturage a été supprimé, ce sera bientôt pris en compte"
-
-#: templates/carpooling/carpool/block.html:5
-#: templates/carpooling/carpool/block.html:33
-#: templates/carpooling/carpool/list.html:46
+#: templates/carpooling/carpool/block.html:6
 msgid "Carpool"
 msgstr "Covoiturage"
 
-#: templates/carpooling/carpool/block.html:10
+#: templates/carpooling/carpool/block.html:11
 msgid "Add a carpool"
 msgstr "Ajouter un cov"
 
 #. Translators: Archives
-#: templates/carpooling/carpool/block.html:17
+#: templates/carpooling/carpool/block.html:18
 msgid "Records"
 msgstr "Archives"
 
-#: templates/carpooling/carpool/block.html:33
+#: templates/carpooling/carpool/block.html:34
+#: templates/carpooling/carpool/list.html:46
+msgid "carpooling"
+msgstr "covoiturage"
+
+#: templates/carpooling/carpool/block.html:34
 #: templates/carpooling/carpool/list.html:46
 msgid "About"
 msgstr "À propos de"
 
-#: templates/carpooling/carpool/block.html:53
-#: templates/carpooling/carpool/list.html:42
-#: templates/carpooling/carpool/list.html:64
+#: templates/carpooling/carpool/block.html:61
+#: templates/carpooling/carpool/list.html:56
 #, python-format
 msgid "%(TimeSince)s ago"
 msgstr "il y a %(TimeSince)s"
@@ -171,14 +153,34 @@ msgstr "Mettre à jour"
 msgid "Publish"
 msgstr "Publier"
 
-#: templates/carpooling/carpool/list.html:7
+#: templates/carpooling/carpool/list.html:9
 msgid "Carpools"
 msgstr "Covoiturages"
 
-#: templates/carpooling/carpool/list.html:14
+#: templates/carpooling/carpool/list.html:16
 msgid "Add a carpool offer/search"
 msgstr "Publier une offre/demande de cov"
 
-#: templates/carpooling/carpool/list.html:17
+#: templates/carpooling/carpool/list.html:19
 msgid "Last carpools list"
 msgstr "Liste des derniers covoiturages"
+
+#: templates/carpooling/carpool/list.html:47
+msgid "contact"
+msgstr "contacter"
+
+#: views.py:18
+msgid "Rezo is not hacked. You don't have the permission xD"
+msgstr "Le Rezo n’est pas «hacké». Tu n’as pas la permissionx xD"
+
+#: views.py:53
+msgid "Your request has been saved successfully :P"
+msgstr "Votre demande a bien été enregistrée :P"
+
+#: views.py:68
+msgid "Your carpool has been updated, it will be refreshed in a moment"
+msgstr "Votre covoiturage a été mis à jour, ce sera bientôt pris en compte"
+
+#: views.py:81
+msgid "Your carpool has been removed, it will be refreshed in a moment"
+msgstr "Votre covoiturage a été supprimé, ce sera bientôt pris en compte"
