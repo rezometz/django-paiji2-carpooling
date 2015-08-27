@@ -25,6 +25,7 @@ setup(
     url='https://github.com/rezometz/django-paiji2-carpooling',
     author='Supelec Rezo Metz',
     author_email='paiji-dev@rezometz.org',
+    license='Affero GPL v3+',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
