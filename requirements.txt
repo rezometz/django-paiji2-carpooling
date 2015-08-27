@@ -1,1 +1,2 @@
 git+https://github.com/rezometz/django-modular-blocks
+git+https://github.com/rezometz/django-paiji2-utils
