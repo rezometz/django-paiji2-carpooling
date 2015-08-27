@@ -21,9 +21,10 @@
     <ul class="list-unstyled">
         {% for cov in covs %}
             <li class="cov-item{% if not cov.isGood %} text-muted{% endif %}">
-                <span class="begin-time">
-                    {% profile_link cov.author %}
-                    {% if cov.annonce_type == 0 %}
+
+                {% profile_link cov.author %}
+
+                {% if cov.annonce_type == 0 %}
                     <span class="label label-success">
                         {% trans 'Offer' context "1st p sg" %}
                     </span>
@@ -31,26 +32,32 @@
                     <span class="label label-danger">
                         {% trans 'Search' context "1st p sg" %}
                     </span>
-                    {% endif %}
-                    <span class="label label-primary">
-                        {{ cov.good_until|date:'DATETIME_FORMAT' }}
-                    </span>
+                {% endif %}
+
+                <span class="label label-primary">
+                    {{ cov.good_until|date:'DATETIME_FORMAT' }}
                 </span>
+
                 <div class="pull-right">
-                    {% with subject='['|add:_('carpooling')|add:'] '|add:_('About')|add:' : "'|add:cov.notes|add:'"'|urlencode %}
-                    {% mail_link cov.author _('contact') subject %}
-                    {% endwith %}
                 {% if cov.author == request.user %}
                     <a href="{% url 'carpool-edit' cov.id %}"><i class="fa fa-pencil"></i></a>
                     <a href="{% url 'carpool-delete' cov.id %}"><i class="fa fa-trash-o"></i></a>
+                {% else %}
+                    {% with subject='['|add:_('carpooling')|add:'] '|add:_('About')|add:' : "'|add:cov.notes|add:'"'|urlencode %}
+                    {% mail_link cov.author _('contact') subject %}
+                    {% endwith %}
                 {% endif %}
                 </div>
-                {{ cov.notes }}
+
                 <br/>
+
+                {{ cov.notes }}
+
                 <span class="text-muted"><small>{% blocktrans with TimeSince=cov.posted_at|timesince %}{{ TimeSince }} ago{% endblocktrans %}</small></span>
+
             </li>
             <hr>
-            {% endfor %}
+        {% endfor %}
     </ul>
 
     <div class="pagination-container">
