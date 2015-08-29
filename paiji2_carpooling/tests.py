@@ -1,4 +1,5 @@
-from django.test import TestCase, Client
+from django.test import TestCase  # , Client
+from htmlvalidator.client import ValidatingClient
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 
@@ -36,7 +37,7 @@ class BaseTestCase(TestCase):
             annonce_type=Carpool.OFFER,
             notes='Test',
         )
-        self.client = Client(enforce_csrf_checkts=True)
+        self.client = ValidatingClient()
 
 
 class PagesTestCase(BaseTestCase):
