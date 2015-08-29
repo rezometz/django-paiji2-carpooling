@@ -55,8 +55,9 @@
 
                 <span class="text-muted"><small>{% blocktrans with TimeSince=cov.posted_at|timesince %}{{ TimeSince }} ago{% endblocktrans %}</small></span>
 
+                <hr/>
             </li>
-            <hr>
+
         {% endfor %}
     </ul>
 
