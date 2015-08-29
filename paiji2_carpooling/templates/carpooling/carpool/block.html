@@ -22,46 +22,51 @@
 
 <ul class="list-unstyled">
     {% for item in cov %}
-    <li>
 
-        {% profile_link item.author %}
+        <li>
 
-        <div class="pull-right">
-            {% if item.author == request.user %}
-                <a href="{% url 'carpool-edit' item.id %}"><i class="fa fa-pencil"></i></a>
-                <a href="{% url 'carpool-delete' item.id %}"><i class="fa fa-trash-o"></i></a>
+            {% profile_link item.author %}
+
+            <div class="pull-right">
+                {% if item.author == request.user %}
+                    <a href="{% url 'carpool-edit' item.id %}"><i class="fa fa-pencil"></i></a>
+                    <a href="{% url 'carpool-delete' item.id %}"><i class="fa fa-trash-o"></i></a>
+                {% else %}
+                    {% with subject='['|add:_('carpooling')|add:'] '|add:_('About')|add:' : "'|add:item.notes|add:'"'|urlencode %}
+                    {% mail_link item.author '' subject %}
+                    {% endwith %}
+                {% endif %}
+            </div>
+
+            <br/>
+
+            {% if item.annonce_type == 0 %}
+            <span class="label label-success">
+                {% trans 'Offer' context "1st p sg" %}
+            </span>
             {% else %}
-                {% with subject='['|add:_('carpooling')|add:'] '|add:_('About')|add:' : "'|add:item.notes|add:'"'|urlencode %}
-                {% mail_link item.author '' subject %}
-                {% endwith %}
+            <span class="label label-danger">
+                {% trans 'Search' context "1st p sg" %}
+            </span>
             {% endif %}
-        </div>
 
-        <br/>
+            <span class="label label-primary">
+                {{ item.good_until|date:'SHORT_DATETIME_FORMAT' }}
+            </span>
 
-        {% if item.annonce_type == 0 %}
-        <span class="label label-success">
-            {% trans 'Offer' context "1st p sg" %}
-        </span>
-        {% else %}
-        <span class="label label-danger">
-            {% trans 'Search' context "1st p sg" %}
-        </span>
-        {% endif %}
+            <br/>
 
-        <span class="label label-primary">
-            {{ item.good_until|date:'SHORT_DATETIME_FORMAT' }}
-        </span>
+            {{ item.notes|readmore:10 }}
 
-        <br/>
+            <span class="text-muted">
+                <small>{% blocktrans with TimeSince=item.posted_at|timesince %}{{ TimeSince }} ago{% endblocktrans %}</small>
+            </span>
 
-        {{ item.notes|readmore:10 }}
+        </li>
 
-        <span class="text-muted">
-            <small>{% blocktrans with TimeSince=item.posted_at|timesince %}{{ TimeSince }} ago{% endblocktrans %}</small>
-        </span>
+        <li>
+            <hr/>
+        </li>
 
-    </li>
-    <hr/>
     {% endfor %}
 </ul>
