@@ -13,7 +13,7 @@
     <h3>{% trans 'Do you really want to delete this carpool ?' %}</h3>
     <p>'{{ object.notes }}'</p>
 
-    <form action="" method="post" role="form">
+    <form action="{{ request.get_full_path }}" method="post" role="form">
         {% csrf_token %}
 
         <input type="hidden" value="{{ request.META.HTTP_REFERER }}" name="next" />

@@ -25,18 +25,18 @@
         <form action="{{ request.get_full_path }}" method="post" role="form">
             {% csrf_token %}
             <div class="form-group">
-                <label for="annonceur">{% trans 'Announcer' %}</label>
+                <label>{% trans 'Announcer' %}</label>
                 <p>{{ request.user.first_name }} ({{ request.user.email }})</p>
             </div>
 
             <div class="form-group">
-                <label for="annonce_type">{% trans 'Advert type' %}</label>
+                <label for="id_annonce_type">{% trans 'Advert type' %}</label>
                 {% bootstrap_field form.annonce_type show_label=False %}
 
-                <label for="good_until">{% trans 'Departure time' %}</label>
+                <label for="id_good_until">{% trans 'Departure time' %}</label>
                 {% bootstrap_field form.good_until show_label=False %}
 
-                <label for="annonceur">{% trans 'Notes' %}</label>
+                <label for="id_notes">{% trans 'Notes' %}</label>
                 <p class="help-block">{% trans 'Ex: Metz-Paris-Compiègne, on Friday around 5pm, 3 places 15 €, back on Sunday at 6pm' %}</p>
                 {% bootstrap_field form.notes show_label=False %}
             </div>

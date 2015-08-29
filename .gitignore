@@ -15,6 +15,9 @@ Session.vim
 *.pyc
 __pycache__/
 local_settings.py
+# html validator
+validation_errors/*
+
 
 
 ### Python ###
