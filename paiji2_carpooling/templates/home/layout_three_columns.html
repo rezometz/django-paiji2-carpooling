@@ -1,3 +1,4 @@
+{% load cov_tag %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +9,9 @@
     </head>
 
     <body>
+        <div id="block">
+            {% get_cov %}
+        </div>
         <div id="main" class="container clearfix">
             <div class="row">
                 <div class="col-md-6">
