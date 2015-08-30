@@ -24,16 +24,16 @@ User = get_user_model()
 
 class BaseTestCase(TestCase):
     def setUp(self):
-        self.alice = User.objects.create_user(
-            'alice',
+        self.radegonde = User.objects.create_user(
+            'radegonde',
             password='test',
         )
-        self.chuck = User.objects.create_user(
-            'chuck',
+        self.enguerrand = User.objects.create_user(
+            'enguerrand',
             password='test',
         )
         self.carpool = Carpool.objects.create(
-            author=self.alice,
+            author=self.radegonde,
             annonce_type=Carpool.OFFER,
             notes='Test',
         )
@@ -47,7 +47,7 @@ class PagesTestCase(BaseTestCase):
         self.assertEqual(response.status_code, 302)
 
         # Authenticated user
-        self.client.login(username='alice', password='test')
+        self.client.login(username='radegonde', password='test')
         response = self.client.get(reverse('carpool-list'))
         self.assertEqual(response.status_code, 200)
 
@@ -57,7 +57,7 @@ class PagesTestCase(BaseTestCase):
         self.assertEqual(response.status_code, 302)
 
         # Authenticated user
-        self.client.login(username='alice', password='test')
+        self.client.login(username='radegonde', password='test')
 
         response = self.client.get(reverse('carpool-create'))
         self.assertEqual(response.status_code, 200)
@@ -76,13 +76,13 @@ class PagesTestCase(BaseTestCase):
             'pk': self.carpool.pk,
         })
         # Non owner
-        self.client.login(username='chuck', password='test')
+        self.client.login(username='enguerrand', password='test')
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 404)
 
         # Owner
-        self.client.login(username='alice', password='test')
+        self.client.login(username='radegonde', password='test')
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
@@ -101,13 +101,13 @@ class PagesTestCase(BaseTestCase):
             'pk': self.carpool.pk,
         })
         # Non owner
-        self.client.login(username='chuck', password='test')
+        self.client.login(username='enguerrand', password='test')
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 404)
 
         # Owner
-        self.client.login(username='alice', password='test')
+        self.client.login(username='radegonde', password='test')
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
@@ -131,12 +131,12 @@ class ModelsTestCase(BaseTestCase):
     def setUp(self):
         super(ModelsTestCase, self).setUp()
         self.carpool_offer = Carpool.objects.create(
-            author=self.alice,
+            author=self.radegonde,
             annonce_type=Carpool.OFFER,
             notes='test',
         )
         self.carpool_search = Carpool.objects.create(
-            author=self.alice,
+            author=self.radegonde,
             annonce_type=Carpool.SEARCH,
             notes='test',
         )
