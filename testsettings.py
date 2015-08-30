@@ -1,6 +1,5 @@
 import django.conf.global_settings as DEFAULT_SETTINGS
 import os
-from django.conf.global_settings import *
 
 
 BASE_DIR = os.path.dirname(__file__)
@@ -14,7 +13,7 @@ DATABASES = {
     },
 }
 
-TEMPLATE_CONTEXT_PROCESSORS += (
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
 )
 
@@ -52,7 +51,8 @@ HTMLVALIDATOR_ENABLED = True
 
 HTMLVALIDATOR_FAILFAST = True
 
-HTMLVALIDATOR_VNU_URL = 'http://validator.nu/'
+# HTMLVALIDATOR_VNU_URL = 'http://validator.nu/'
+HTMLVALIDATOR_VNU_URL = 'https://validator.nu/'
 # HTMLVALIDATOR_VNU_JAR = '~/dev/dist/vnu.jar'
 
 HTMLVALIDATOR_DUMPDIR = os.path.join(BASE_DIR, 'validation_errors')
