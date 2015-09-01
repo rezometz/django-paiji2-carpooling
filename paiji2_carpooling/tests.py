@@ -42,7 +42,7 @@ class BaseTestCase(TestCase):
 
 class PagesTestCase(BaseTestCase):
     def test_list(self):
-        # Non unauthenticated user
+        # Unauthenticated user
         response = self.client.get(reverse('carpool-list'))
         self.assertEqual(response.status_code, 302)
 

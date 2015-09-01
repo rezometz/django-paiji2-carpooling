@@ -2,14 +2,29 @@ from django.views import generic
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseNotFound
 from django.utils.translation import ugettext as _
-from django.contrib import messages
 
 from paiji2_carpooling.models import (
     Carpool,
 )
+from paiji2_utils.views import SuccessUrlMixin
+
+
+class MySuccessUrl(SuccessUrlMixin):
+
+    default_url_name = 'carpool-list'
+
+    def get_forbidden_urls(self):
+        if hasattr(self, 'object'):
+            return (
+                reverse('carpool-edit', args=[self.object.pk]),
+                reverse('carpool-delete', args=[self.object.pk]),
+            )
+        else:
+            return None
 
 
 class CarpoolOwnerMixin(object):
+
     def dispatch(self, request, *args, **kwargs):
         """ Making sure that only authors can update Carpools """
         obj = self.get_object()
@@ -23,6 +38,7 @@ class CarpoolOwnerMixin(object):
 
 
 class CarpoolListView(generic.ListView):
+
     model = Carpool
     paginate_by = 10
     context_object_name = 'covs'
@@ -34,29 +50,29 @@ class CarpoolListView(generic.ListView):
         )
 
 
-class CarpoolCreateView(generic.CreateView):
+class CarpoolCreateView(MySuccessUrl, generic.CreateView):
+
     model = Carpool
     template_name = 'carpooling/carpool/form.html'
     fields = (
         'annonce_type',
         'good_until',
         'notes',
+    )
+    message_succes = _('Your request has been saved successfully :P')
+    forbidden_url_names = (
+        'carpool-create',
     )
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super(CarpoolCreateView, self).form_valid(form)
 
-    def get_success_url(self):
-        messages.success(
-            self.request,
-            _('Your request has been saved successfully :P')
-        )
-        success_url = self.request.POST.get('next')
-        return success_url if success_url != '' else reverse('index')
 
+class CarpoolEditView(CarpoolOwnerMixin,
+                      MySuccessUrl,
+                      generic.UpdateView):
 
-class CarpoolEditView(CarpoolOwnerMixin, generic.UpdateView):
     model = Carpool
     template_name = 'carpooling/carpool/form.html'
     fields = (
@@ -64,24 +80,14 @@ class CarpoolEditView(CarpoolOwnerMixin, generic.UpdateView):
         'good_until',
         'notes',
     )
-    message_update = _(
+    message_success = _(
         'Your carpool has been updated, it will be refreshed in a moment'
     )
 
-    def get_success_url(self):
-        messages.success(self.request, self.message_update)
-        success_url = self.request.POST.get('next')
-        return success_url if success_url != '' else reverse('index')
 
-
-class CarpoolDeleteView(CarpoolOwnerMixin, generic.DeleteView):
+class CarpoolDeleteView(CarpoolOwnerMixin, MySuccessUrl, generic.DeleteView):
     model = Carpool
     template_name = 'carpooling/carpool/confirm_delete.html'
-    message_delete = _(
+    message_success = _(
         'Your carpool has been removed, it will be refreshed in a moment'
     )
-
-    def get_success_url(self):
-        messages.success(self.request, self.message_delete)
-        success_url = self.request.POST.get('next')
-        return success_url if success_url != '' else reverse('index')
