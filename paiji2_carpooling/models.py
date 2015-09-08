@@ -1,7 +1,6 @@
-from datetime import timedelta
-
-from django.db import models
+from datetime import timedelta, date, time
 from django.utils import timezone
+from django.db import models
 from django.utils.translation import (
     ugettext as _,
     pgettext,
@@ -18,6 +17,14 @@ except:
 
 def default_good_until():
     return timezone.now() + timedelta(days=3)
+
+
+def default_good_until_0():
+    return date.today() + timedelta(days=3)
+
+
+def default_good_until_1():
+    return time(hour=18, minute=30)
 
 
 class Carpool(models.Model):

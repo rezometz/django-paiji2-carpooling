@@ -4,6 +4,23 @@
 {% load bootstrap3 %}
 {% load i18n %}
 
+{% block style %}
+<script type="text/javascript" src="/fr/admin/jsi18n/"></script>
+
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/related-widget-wrapper.js"></script>
+<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
+<script type="text/javascript">
+  window.__admin_media_prefix__ = "/static/admin/";
+</script>
+{% endblock %}
+
 
 {% block title %}
     {% if form.instance and form.instance.pk %}
@@ -33,8 +50,11 @@
                 <label for="id_annonce_type">{% trans 'Advert type' %}</label>
                 {% bootstrap_field form.annonce_type show_label=False %}
 
-                <label for="id_good_until">{% trans 'Departure time' %}</label>
+                <label>{% trans 'Departure time' %}</label>
+                {% comment %}
                 {% bootstrap_field form.good_until show_label=False %}
+                {% endcomment %}
+                {{ form.good_until }}
 
                 <label for="id_notes">{% trans 'Notes' %}</label>
                 <p class="help-block">{% trans 'Ex: Metz-Paris-Compiègne, on Friday around 5pm, 3 places 15 €, back on Sunday at 6pm' %}</p>

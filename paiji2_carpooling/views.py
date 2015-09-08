@@ -2,7 +2,7 @@ from django.views import generic
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseNotFound
 from django.utils.translation import ugettext as _
-
+from .forms import CarpoolForm
 from paiji2_carpooling.models import (
     Carpool,
 )
@@ -53,12 +53,8 @@ class CarpoolListView(generic.ListView):
 class CarpoolCreateView(MySuccessUrl, generic.CreateView):
 
     model = Carpool
+    form_class = CarpoolForm
     template_name = 'carpooling/carpool/form.html'
-    fields = (
-        'annonce_type',
-        'good_until',
-        'notes',
-    )
     message_succes = _('Your request has been saved successfully :P')
     forbidden_url_names = (
         'carpool-create',
@@ -74,12 +70,8 @@ class CarpoolEditView(CarpoolOwnerMixin,
                       generic.UpdateView):
 
     model = Carpool
+    form_class = CarpoolForm
     template_name = 'carpooling/carpool/form.html'
-    fields = (
-        'annonce_type',
-        'good_until',
-        'notes',
-    )
     message_success = _(
         'Your carpool has been updated, it will be refreshed in a moment'
     )

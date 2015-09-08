@@ -5,7 +5,8 @@ from django.core.urlresolvers import reverse
 
 from paiji2_carpooling.models import (
     Carpool,
-    default_good_until,
+    default_good_until_0,
+    default_good_until_1,
 )
 # from paiji2_carpooling.views import (
 #     CarpoolOwnerMixin,
@@ -64,7 +65,8 @@ class PagesTestCase(BaseTestCase):
 
         response = self.client.post(reverse('carpool-create'), {
             'annonce_type': Carpool.OFFER,
-            'good_until': default_good_until(),
+            'good_until_0': default_good_until_0(),
+            'good_until_1': default_good_until_1(),
             'notes': 'test',
         })
 
@@ -89,7 +91,8 @@ class PagesTestCase(BaseTestCase):
 
         response = self.client.post(url, {
             'annonce_type': Carpool.OFFER,
-            'good_until': default_good_until(),
+            'good_until_0': default_good_until_0(),
+            'good_until_1': default_good_until_1(),
             'notes': 'test',
         })
 
