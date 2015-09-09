@@ -25,16 +25,16 @@
                 {% profile_link cov.author %}
 
                 {% if cov.annonce_type == 0 %}
-                    <span class="label label-success">
+                    <span class="label {% if cov.isGood %}label-success{% else %}label-default{% endif %}">
                         {% trans 'Offer' context "1st p sg" %}
                     </span>
                     {% else %}
-                    <span class="label label-danger">
+                    <span class="label {% if cov.isGood %}label-danger{% else %}label-default{% endif %}">
                         {% trans 'Search' context "1st p sg" %}
                     </span>
                 {% endif %}
 
-                <span class="label label-primary">
+                <span class="label {% if cov.isGood %}label-primary{% else %}label-default{% endif %}">
                     {{ cov.good_until|date:'DATETIME_FORMAT' }}
                 </span>
 
