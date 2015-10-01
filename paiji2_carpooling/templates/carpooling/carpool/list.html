@@ -43,7 +43,7 @@
                     <a href="{% url 'carpool-edit' cov.id %}"><i class="fa fa-pencil"></i></a>
                     <a href="{% url 'carpool-delete' cov.id %}"><i class="fa fa-trash-o"></i></a>
                 {% else %}
-                    {% with subject='['|add:_('carpooling')|add:'] '|add:_('About')|add:' : "'|add:cov.notes|add:'"'|urlencode %}
+                    {% with subject='['|add:_('carpooling')|add:'] '|add:_('About')|add:' : "'|add:cov.notes|add:'"' %}
                     {% mail_link cov.author _('contact') subject %}
                     {% endwith %}
                 {% endif %}
